@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --background: var(--color-cream-50);
+  --foreground: var(--color-charcoal-900);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
+
+  /* Charcoal — brand Charcoal (#26282B) at 800, Warm Grey (#9C9691) at 400 */
+  --color-charcoal-50: #f3f2f2;
+  --color-charcoal-100: #e3e2e0;
+  --color-charcoal-200: #cecbc8;
+  --color-charcoal-300: #b5b0ad;
+  --color-charcoal-400: #9c9691;
+  --color-charcoal-500: #73706d;
+  --color-charcoal-600: #555454;
+  --color-charcoal-700: #38393a;
+  --color-charcoal-800: #26282b;
+  --color-charcoal-900: #181a1b;
+  --color-charcoal-950: #111213;
+
+  /* Clay — brand Deep Flamingo (#E2597A) at 600, Flamingo (#FC8EAC) at 300 */
+  --color-clay-50: #ffeef3;
+  --color-clay-100: #fed7e2;
+  --color-clay-200: #fdb6c9;
+  --color-clay-300: #fc8eac;
+  --color-clay-400: #f07696;
+  --color-clay-500: #e96687;
+  --color-clay-600: #e2597a;
+  --color-clay-700: #ac435e;
+  --color-clay-800: #843348;
+  --color-clay-900: #5c2233;
+
+  /* Cream — brand Warm Cream (#FAF3EC) at 50 */
+  --color-cream-50: #faf3ec;
+  --color-cream-100: #eee4d9;
+  --color-cream-200: #e2d5c6;
+  --color-cream-300: #d5c6b2;
+  --color-cream-400: #c9b79f;
+
+  /* Gold — brand Deep Teal (#2F6E6A) at 600 */
+  --color-gold-300: #b6cccb;
+  --color-gold-400: #8dafad;
+  --color-gold-500: #5d8e8b;
+  --color-gold-600: #2f6e6a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-charcoal-950);
+    --foreground: var(--color-cream-100);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Homepage partner ticker (components/PartnerTicker.tsx). The track renders
+   the partner list twice back-to-back and animates exactly -50% so the loop
+   has no visible seam. */
+@keyframes partner-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-ticker-track {
+  animation: partner-ticker-scroll 36s linear infinite;
+}
+
+.partner-ticker:hover .partner-ticker-track,
+.partner-ticker:focus-within .partner-ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-ticker-track {
+    animation: none;
+  }
+}
